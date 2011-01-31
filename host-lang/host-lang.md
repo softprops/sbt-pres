@@ -15,7 +15,7 @@
 
 ![jim](host-lang/jim-weirich.jpg)
 
-`rake -T # ruby developer happiness ensues`
+    rake -T # ruby developer happiness ensues
 
 !SLIDE
 

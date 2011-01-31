@@ -177,7 +177,7 @@ sbt is built with sbt. How cool is that?
 
 !SLIDE
 
-    // fixed version
+    // fixed scala version
     val a = "org.a" % "a_2.7.7" % "1.0"
 
     // cross built (a good citizen)
@@ -191,7 +191,7 @@ sbt is built with sbt. How cool is that?
 
 !SLIDE
 
-## Phone Out, Phone  Home
+## phone out, phone home
     val x = "repo name" at "path"
 
     val scalaToolsSnapshots =
@@ -241,7 +241,7 @@ publish **local**
 
 # tasks
 
-louder than words
+speak louder than words
 
 !SLIDE
 
@@ -280,30 +280,46 @@ speak sbt, speak!
 !SLIDE
 
 # plugins
-sharing is caring
+**sharing** is caring
 
 !SLIDE
+
+make
+
+    > cat project/build/ChattyProject.scala
+    import sbt._
+
+    class ChattyProject(info: ProjectInfo) extends PluginProject(info)
+
+
+    > cat src/main/scala/Chatty.scala
+    package nyscala
+
+    import sbt._
+
+    trait Chatty extends Project {
+     lazy val say = task { ... }
+    }
+
+!SLIDE
+
+take
 
     > cat project/plugins/Plugins.scala
     import sbt._
 
     class Plugins(info: ProjectInfo) extends PluginDefinition(info) {
-      val snuggletex_repo = "snuggletex_repo" at
-        "http://www2.ph.ed.ac.uk/maven2"
-      val t_repo = "t_repo" at
-        "http://tristanhunt.com:8081/content/groups/public/"
-      val posterous = "net.databinder" % "posterous-sbt" % "0.1.6"
+      val repo = "repoz" at  "http://host.com/repos"
+      val chatty = "nyscala" % "chatty" % "1.0.0"
     }
-
-!SLIDE
 
     > cat project/build/Project.scala
     import sbt._
 
     class Fooz(info: ProjectInfo)
       extends DefaultProject(info)
-      with posterous.Publish {
-      // you can pub release notes to posterous
+      with nyscala.Chatty {
+      // you can now make sbt speak
     }
 
 
