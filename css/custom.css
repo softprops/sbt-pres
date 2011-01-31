@@ -1,0 +1,36 @@
+/* constume styles */
+#instructions { display:none; }
+
+pre {
+  margin:1em 0;
+}
+
+strong {
+  color:#F82BB7;
+}
+
+h2 span {
+  color:#ccc;
+}
+
+.content {
+  height:50%;
+}
+
+code {
+  font-size:24px !important;
+}
+
+#qr {
+  position:relative;
+  display:block;
+  float:right;
+  margin-top:40px;
+  top:10px;
+  right:10px;
+}
+
+.strike {
+  color:#ddd;
+  text-decoration: line-through;
+}
