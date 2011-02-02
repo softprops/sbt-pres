@@ -60,7 +60,8 @@ sbt is built with sbt. How cool is that?
 
     > mkdir -p fooz/src/{main,test}/{scala,resources}
 
-    > mkdir -p fooz/{project,src/{main,test}/{scala,resources}}
+    > mkdir -p fooz/{project,src/{main,test}/\
+      {scala,resources}}
 
 !SLIDE
     > tree # or
@@ -121,7 +122,7 @@ sbt is built with sbt. How cool is that?
     import sbt._
 
     /** Sbt will evaluate this as the project's configuration */
-    class Fooz(info: ProjectInfo) extends DefaultProject {
+    class Fooz(info: ProjectInfo) extends DefaultProject(info) {
       // override defaults
       // declare dependencies
       // conjure spells!
@@ -211,7 +212,8 @@ sbt is built with sbt. How cool is that?
     class Project(info: ProjectInfo)
       extends DefaultProject(info) {
       override def managedStyle = ManagedStyle.Maven
-      val publishTo = "Repoz" at "http://you.com/repos/releases/"
+      val publishTo =
+       "Repoz" at "http://you.com/repos/releases/"
       Credentials(Path.userHome / ".ivy2" / ".credentials", log)
     }
 
@@ -233,7 +235,7 @@ sbt is built with sbt. How cool is that?
 # think global,
 publish **local**
 
-    > sbt +publish-local # publish your project to a local cache
+    > sbt +publish-local # publish your project to a locally
 
     > mvn -o # maven's offline mode
 
@@ -267,7 +269,8 @@ continuous execution
       args match {
         case Array() => task { Some("say what?") }
         case _ => task {
-          new java.lang.ProcessBuilder(("say" :: args.toList).toArray:_*).start
+          new java.lang.ProcessBuilder(
+            ("say" :: args.toList).toArray:_*).start
           None
         }
       }
